@@ -18,3 +18,27 @@ root@ip-172-31-42-38:~# cat nginx.yml
   handlers:
     - name: restart nginx
       service: name=nginx state=reloaded
+
+
+
+
+
+- hosts: localhost
+  become: yes
+  tasks:
+
+    - name: update
+      apt: update_cache=yes
+
+    - name: Install Nginx
+      apt: name=nginx state=latest
+
+    - name: deploy
+      copy: src=/root/index.html dest=/var/www/html
+
+      notify:
+        - restart nginx
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=reloaded
