@@ -1,0 +1,10 @@
+root@ip-172-31-42-38:~# cat file.yml
+
+---
+
+- hosts: localhost
+  tasks:
+  - name: Creating an empty file
+    file:
+      path: fils1e.txt
+      state: touch
