@@ -1,0 +1,22 @@
+
+how to install multiful packages in sinle playbook ? using loops concept
+root@ip-172-31-22-151:~# cat loop.yml
+
+
+
+
+---
+- hosts: localhost
+  tasks:
+    - name: installa dependency
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - curl
+        - maven
+        - docker.io
+        - git
+        
